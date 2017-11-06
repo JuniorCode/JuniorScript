@@ -5,3 +5,4 @@ dependencies:
 test:
   post:
   - run-js
+  - nano juniorscript.js
