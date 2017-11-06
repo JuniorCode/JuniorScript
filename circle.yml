@@ -1,0 +1,7 @@
+dependencies:
+  post:
+    - npm install jslint
+
+test:
+  post:
+  - jslint juniorscript.js
