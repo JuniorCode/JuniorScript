@@ -1,6 +1,6 @@
 dependencies:
   post:
-    - npm install jslint
+    - npm install -g jslint
 
 test:
   post:
