@@ -100,6 +100,7 @@ function eval_jrs(code) {
         in_cmd = in_cmd + " " + split_command[j];
       }
 
+      var last = prompt(in_cmd);
 
     }
 
