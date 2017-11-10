@@ -105,9 +105,19 @@ function eval_jrs(code) {
     }
 
     if (split_command[1] == "=") {
+      var set_value;
       statement = "variable";
       variables.push(split_command[0]);
-      values.push(split_command[2])
+      split_command.shift();
+      for (var m = 0; m < split_command.length; m++) {
+        if (m == 0) {
+          set_value = split_command[m];
+        } else {
+          set_value = " " + split_command[m];
+        }
+      }
+      
+      values.push(set_value)
     }
 
     if (split_command[0] == "if") {
