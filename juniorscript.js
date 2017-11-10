@@ -44,6 +44,10 @@ function eval_jrs(code) {
 
       if (split_command[0] == "(func)") {
         split_command.shift();
+      } else {
+        for (var k = 0; k < split_command.length; k++) {
+            split_command[k] = split_command[k].replace("(last)", last);
+        }
       }
 
       var out_cmd = "";
@@ -52,7 +56,7 @@ function eval_jrs(code) {
         if (split_command[j] == "(last)") {
           split_command[j] = last;
         }
-        
+
         if (j == 0) {
           var out_cmd = out_cmd + split_command[j];
         } else {
@@ -73,10 +77,6 @@ function eval_jrs(code) {
       split_command.shift();
 
       var in_cmd = split_command[0];
-
-      for (var k = 0; k < split_command.length; k++) {
-          split_command[k] = split_command[k].replace("(last)", last);
-      }
 
       for (var j = 1; j < split_command.length; j++) {
           in_cmd = in_cmd + " " + split_command[j];
