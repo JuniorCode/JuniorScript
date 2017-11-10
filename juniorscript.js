@@ -73,7 +73,7 @@ function eval_jrs(code) {
       document.write(out_cmd);
     }
 
-    if (split_command[i] == "in") {
+    if (split_command[0] == "in") {
       if (split_command[1] == "=") {
         error("Undeclared context on line " + (i + 1) + ".");
       }
@@ -93,6 +93,7 @@ function eval_jrs(code) {
           split_command[k] = split_command[k].replace("(last)", last);
         }
       }
+      
       var in_cmd = split_command[0];
 
       for (var j = 1; j < split_command.length; j++) {
