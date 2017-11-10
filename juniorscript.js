@@ -66,14 +66,12 @@ function eval_jrs(code) {
 
       statement = "prompt";
 
-      var in_cmd = "";
+      split_command.shift();
 
-      for (var j = 0; j < split_command.length; j++) {
-        if (j == 0) {
-          var out_cmd = in_cmd + split_command[j];
-        } else {
+      var in_cmd = split_command[0];
+
+      for (var j = 1; j < split_command.length; j++) {
           var out_cmd = in_cmd + " " + split_command[j];
-        }
       }
 
       if (split_command[0] == "(func)") {
