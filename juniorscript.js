@@ -13,6 +13,11 @@ https://www.github.com/JuniorCode
 
 */
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 var style = document.createElement("style");
 document.body.appendChild(style);
 style.innerHTML = "juniorscript{display:none;}";
@@ -49,6 +54,10 @@ function eval_jrs(code) {
       var out_cmd = "";
 
       for (var j = 0; j < split_command.length; j++) {
+        if (split_command[j] == "(last)") {
+          split_command[j] = last;
+        }
+        
         if (j == 0) {
           var out_cmd = out_cmd + split_command[j];
         } else {
