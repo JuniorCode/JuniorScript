@@ -13,11 +13,6 @@ https://www.github.com/JuniorCode
 
 */
 
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
-
 var style = document.createElement("style");
 document.body.appendChild(style);
 style.innerHTML = "juniorscript{display:none;}";
