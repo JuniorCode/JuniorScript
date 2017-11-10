@@ -51,7 +51,7 @@ function eval_jrs(code) {
           for (var l = 0; l < variables.length; l++) {
             split_command[k] = split_command[k].replace("(" + variables[l] + ")", values[l]);
           }
-          
+
           split_command[k] = split_command[k].replace("(last)", last);
         }
       }
@@ -82,31 +82,37 @@ function eval_jrs(code) {
 
       split_command.shift();
 
+      if (split_command[0] == "(func)") {
+        split_command.shift();
+      } else {
+        for (var k = 0; k < split_command.length; k++) {
+          for (var l = 0; l < variables.length; l++) {
+            split_command[k] = split_command[k].replace("(" + variables[l] + ")", values[l]);
+          }
+
+          split_command[k] = split_command[k].replace("(last)", last);
+        }
+      }
       var in_cmd = split_command[0];
 
       for (var j = 1; j < split_command.length; j++) {
-          in_cmd = in_cmd + " " + split_command[j];
+        in_cmd = in_cmd + " " + split_command[j];
       }
 
-      if (split_command[0] == "(func)") {
-        last = prompt(in_cmd);
-      } else {
-        last = prompt(in_cmd);
-      }
 
     }
-    
+
     if (split_command[1] == "=") {
       statement = "variable";
       variables.push(split_command[0]);
       values.push(split_command[2])
     }
 
-    if (split_command[i] == "if") {
+    if (split_command[0] == "if") {
       statement = "if";
     }
 
-    if (split_command[i] == "and") {
+    if (split_command[0] == "and") {
       statement = "end if";
     }
 
