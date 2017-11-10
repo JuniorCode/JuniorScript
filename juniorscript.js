@@ -74,6 +74,10 @@ function eval_jrs(code) {
 
       var in_cmd = split_command[0];
 
+      for (var k = 0; k < split_command.length; k++) {
+          split_command[k] = split_command[k].replace("(last)", last);
+      }
+
       for (var j = 1; j < split_command.length; j++) {
           in_cmd = in_cmd + " " + split_command[j];
       }
