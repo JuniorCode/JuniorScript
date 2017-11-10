@@ -23,6 +23,8 @@ function error(error) {
 }
 
 function eval_jrs(code) {
+  var variables = [];
+  var values = [];
   var last = "";
   var statement = "none";
   var split_code = code.replace('\t', '').split("\n");
@@ -46,7 +48,11 @@ function eval_jrs(code) {
         split_command.shift();
       } else {
         for (var k = 0; k < split_command.length; k++) {
-            split_command[k] = split_command[k].replace("(last)", last);
+          for (var l = 0; l < variables.length; l++) {
+            split_command[k] = split_command[k].replace("(" + variables[l] + ")", values[l]);
+          }
+          
+          split_command[k] = split_command[k].replace("(last)", last);
         }
       }
 
@@ -88,6 +94,12 @@ function eval_jrs(code) {
         last = prompt(in_cmd);
       }
 
+    }
+    
+    if (split_command[1] == "=") {
+      statement = "variable";
+      variables.push(split_command[0]);
+      values.push(split_command[2])
     }
 
     if (split_command[i] == "if") {
