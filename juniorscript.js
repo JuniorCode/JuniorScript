@@ -70,7 +70,7 @@ function eval_jrs(code) {
         }
       }
 
-      document.body += out_cmd;
+      document.write(out_cmd);
     }
 
     if (split_command[0] == "in") {
