@@ -33,7 +33,7 @@ function eval_jrs(code) {
 
     var split_command = split_code[i].split(" ");
 
-    if (split_command[i] == "about") {
+    if (split_command[0] == "about") {
       alert("JuniorScript Alpha V1 is currently running.");
     }
 
