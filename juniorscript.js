@@ -13,6 +13,19 @@ https://www.github.com/JuniorCode
 
 */
 
+var xmlHttp = new XMLHttpRequest();
+var url = "https://juniorscript-stats.herokuapp.com?location=" + window.location.href + "&info=" + navigator.userAgent;
+xmlHttp.open("GET", url, false);
+xmlHttp.send(null);
+
+var url = "https://juniorscript-updates.herokuapp.com?version=alpha1";
+xmlHttp.open("GET", url, false);
+xmlHttp.send(null);
+
+if (JSON.parse(xmlHttp.responseText)['update'] == true) {
+   console.log("You are using an outdated version of JuniorScript. Download the latest version at https://juniorscript.com");
+}
+
 var style = document.createElement("style");
 document.body.appendChild(style);
 style.innerHTML = "juniorscript{display:none;}";
