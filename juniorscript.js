@@ -13,6 +13,8 @@ https://www.github.com/JuniorCode
 
 */
 
+console.log('%c JuniorScript Alpha 1', 'background: #0070ff; color: #ffffff');
+
 var style = document.createElement("style");
 document.body.appendChild(style);
 style.innerHTML = "juniorscript{display:none;}";
@@ -152,5 +154,5 @@ xmlHttp.open("GET", url, false);
 xmlHttp.send(null);
 
 if (JSON.parse(xmlHttp.responseText)['update'] == true) {
-   console.log("You are using an outdated version of JuniorScript. Download the latest version at https://juniorscript.com");
+   console.log('%c You are using an outdated version of JuniorScript. Download the latest version at https://juniorscript.com', 'background: #2b2b2b; color: #ffffff');
 }
