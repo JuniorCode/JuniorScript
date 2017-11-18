@@ -6,6 +6,8 @@ To start using JuniorScript, first download it [here](https://github.com/JuniorC
 
 `<script src="juniorscript.js" type="text/javascript"></script>`
 
+You can also source it from [`https://juniorscript.com/juniorscript.js`](https://juniorscript.com/juniorscript.js)
+
 Now test it out by placing this in your HTML.
 
 `<juniorscript>out It works!</juniorscript>`
