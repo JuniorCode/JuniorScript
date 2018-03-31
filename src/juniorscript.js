@@ -143,7 +143,7 @@ for (var i = 0; i < tags.length; i++) {
 
 var xmlHttp = new XMLHttpRequest();
 var url = "https://juniorscript-stats.herokuapp.com?location=" + window.location.href + "&info=" + navigator.userAgent;
-xmlHttp.open("GET", url, true);
+xmlHttp.open("GET", url, false);
 xmlHttp.send(null);
 
 var url = "https://juniorscript-updates.herokuapp.com?version=alpha1";
