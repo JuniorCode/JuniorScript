@@ -15,10 +15,6 @@ https://www.github.com/JuniorCode
 
 console.log('%c JuniorScript Alpha 1', 'background: #0070ff; color: #ffffff');
 
-var style = document.createElement("style");
-document.body.appendChild(style);
-style.innerHTML = "juniorscript{display:none;}";
-
 function error(error) {
   alert("JuniorScript Error: " + error);
   throw new Error("JuniorScript Error: " + error);
@@ -141,7 +137,8 @@ function eval_jrs(code) {
 var tags = document.getElementsByTagName("juniorscript");
 
 for (var i = 0; i < tags.length; i++) {
-  eval_jrs(tags[i].innerHTML);
+   eval_jrs(tags[i].innerHTML);
+   tags[i].remove();
 }
 
 var xmlHttp = new XMLHttpRequest();
