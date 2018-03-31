@@ -11,8 +11,6 @@ JuniorScript Alpha V1 is created by JuniorCode.
 https://www.github.com/JuniorCode
 */
 
-var code;
-
 console.log('%c JuniorScript Alpha 1', 'background: #0070ff; color: #ffffff');
 
 function error(error) {
@@ -20,7 +18,8 @@ function error(error) {
   throw new Error("JuniorScript Error: " + error);
 }
 
-function eval_jrs(code) {
+function eval_jrs(input_code) {
+  var code = input_code.replace(/\t/g , "");
   var variables = [];
   var values = [];
   var last = "";
@@ -135,9 +134,10 @@ function eval_jrs(code) {
 }
 
 var tags = document.getElementsByTagName("juniorscript");
+var temp_code;
 
 for (var i = 0; i < tags.length; i++) {
-  code = tags[i].innerHTML;
+  temp_code = tags[i].innerHTML;
   tags[i].remove();
   eval_jrs(code);
 }
