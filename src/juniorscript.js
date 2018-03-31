@@ -7,11 +7,11 @@
 \____/ \__,_|_| |_|_|\___/|_|  \____/ \___|_|  |_| .__/ \__|
                                                  | |
                                                  |_|
-
 JuniorScript Alpha V1 is created by JuniorCode.
 https://www.github.com/JuniorCode
-
 */
+
+var code;
 
 console.log('%c JuniorScript Alpha 1', 'background: #0070ff; color: #ffffff');
 
@@ -91,7 +91,7 @@ function eval_jrs(code) {
           split_command[k] = split_command[k].replace("(last)", last);
         }
       }
-      
+
       var in_cmd = split_command[0];
 
       for (var j = 1; j < split_command.length; j++) {
@@ -114,7 +114,7 @@ function eval_jrs(code) {
           set_value = " " + split_command[m];
         }
       }
-      
+
       values.push(set_value)
     }
 
@@ -137,18 +137,14 @@ function eval_jrs(code) {
 var tags = document.getElementsByTagName("juniorscript");
 
 for (var i = 0; i < tags.length; i++) {
-   eval_jrs(tags[i].innerHTML);
-   tags[i].remove();
+  code = tags[i].innerHTML;
+  tags[i].remove();
+  eval_jrs(code);
 }
 
 var xmlHttp = new XMLHttpRequest();
-var url = "https://juniorscript-stats.herokuapp.com?location=" + window.location.href + "&info=" + navigator.userAgent;
-xmlHttp.open("GET", url, false);
-xmlHttp.send(null);
-
 var url = "https://juniorscript-updates.herokuapp.com?version=alpha1";
-xmlHttp.open("GET", url, false);
-xmlHttp.send(null);
+xmlHttp.open("GET", url, true);
 
 if (JSON.parse(xmlHttp.responseText)['update'] == true) {
    console.log('%c You are using an outdated version of JuniorScript. Download the latest version at https://juniorscript.com', 'background: #2b2b2b; color: #ffffff');
