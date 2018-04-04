@@ -139,7 +139,7 @@ var temp_code;
 for (var i = 0; i < tags.length; i++) {
   temp_code = tags[i].innerHTML;
   tags[i].remove();
-  eval_jrs(code);
+  eval_jrs(temp_code);
 }
 
 var xmlHttp = new XMLHttpRequest();
