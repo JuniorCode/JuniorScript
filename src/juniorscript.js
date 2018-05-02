@@ -133,19 +133,19 @@ function eval_jrs(input_code) {
   }
 }
 
-var tags = document.getElementsByTagName("juniorscript");
+var tags = document.getElementsByTagName("script");
 var temp_code;
 
 for (var i = 0; i < tags.length; i++) {
-  temp_code = tags[i].innerHTML;
-  tags[i].remove();
-  eval_jrs(temp_code);
+  if (tags[i].type.toLowerCase().indexOf("juniorscript") > -1) {
+     temp_code = tags[i].innerHTML;
+     eval_jrs(temp_code);
 }
 
 var xmlHttp = new XMLHttpRequest();
 var url = "https://juniorscript-updates.herokuapp.com?version=alpha1";
 xmlHttp.open("GET", url, true);
 
-if (JSON.parse(xmlHttp.responseText)['update'] == true) {
+if (JSON.parse(xmlHttp.responseText)["update"] == true) {
    console.log('%c You are using an outdated version of JuniorScript. Download the latest version at https://juniorscript.com', 'background: #2b2b2b; color: #ffffff');
 }
