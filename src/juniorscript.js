@@ -41,7 +41,7 @@ function eval_jrs(input_code) {
     if (split_command[0] == "exit" || split_command[0] == "die") {
       split_command.shift();
       document.documentElement.innerHTML = split_command.join(" ");
-      break;
+      return;
     }
 
     if (split_command[0] == "out") {
