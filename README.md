@@ -10,7 +10,7 @@ You can also source it from [`https://juniorscript.com/juniorscript.js`](https:/
 
 Now test it out by placing this in your HTML.
 
-`<script type="text/juniorscript">out JuniorScript works!</juniorscript>`
+`<script type="text/juniorscript">out JuniorScript works!</script>`
 
 Using JuniorScript
 ---
