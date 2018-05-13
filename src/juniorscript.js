@@ -33,6 +33,10 @@ function eval_jrs(input_code) {
     if (split_command[0] == "about") {
       alert("JuniorScript Alpha V1 is currently running.");
     }
+     
+    if (split_command[0] == "reload") {
+      window.location.reload();
+    }
 
     if (split_command[0] == "out") {
       if (split_command[1] == "=") {
