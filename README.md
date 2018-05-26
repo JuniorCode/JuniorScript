@@ -16,4 +16,4 @@ Using JuniorScript
 ---
 You can also run JuniorScript directly from JavaScript, like this.
 
-`eval_jrs("out Wow, that's cool!");`
+`JuniorScript.eval("out Wow, that's cool!");`
