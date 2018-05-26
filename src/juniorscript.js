@@ -28,7 +28,7 @@ var variables = [];
 var values = [];
 var last = "";
 
-const JuniorScript = {
+var JuniorScript = {
   "version": "1.0",
   "eval": function(code) {
     if (typeof code !== "undefined") {
