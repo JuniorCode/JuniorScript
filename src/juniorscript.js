@@ -9,7 +9,7 @@
                                                    | |        
                                                    |_|        
 
-JuniorScript Alpha 2.1
+JuniorScript Alpha 2.2
 
 Copyright (©) 2018 JuniorCode
 
@@ -17,7 +17,7 @@ https://github.com/JuniorCode
 
 */
 
-console.log("%c JuniorScript Alpha 2.1", "background: #0070ff; color: #ffffff");
+console.log("%c JuniorScript Alpha 2.2", "background: #0070ff; color: #ffffff");
 
 String.prototype.replaceAll = function(search, replacement) {
   var target = this;
@@ -29,7 +29,7 @@ var values = [];
 var last = "";
 
 var JuniorScript = {
-  "version": "Alpha 2.1",
+  "version": "Alpha 2.2",
   "eval": function(code) {
     if (typeof code !== "undefined") {
       var splitCode = code.replace("\t", "").split(/;|\n/);
@@ -64,6 +64,10 @@ var JuniorScript = {
         rest2.shift();
         rest2 = rest2.join(" ");
 
+        var rest3 = splitCommand;
+        rest3.shift();
+        rest3 = rest3.join(" ");
+
         if (first === "end") {
           skip = false;
         } else {
@@ -80,6 +84,14 @@ var JuniorScript = {
                     eval(rest);
                   case "eval":
                     this.eval(rest);
+                    break;
+                  case "attribute":
+                    console.log(rest3);
+                    if (!!rest3.trim()) {
+                      document.querySelector(second)[third] = rest3;
+                    } else {
+                      last = document.querySelector(second)[third];
+                    }
                     break;
                   case "about":
                     alert("About JuniorScript:\n\nVersion: " + this.version);
@@ -98,6 +110,18 @@ var JuniorScript = {
                     break;
                   case "in":
                     last = prompt(rest);
+                    break;
+                  case "log":
+                    console.log(rest);
+                    break;
+                  case "info":
+                    console.info(rest);
+                    break;
+                  case "warn":
+                    console.warn(rest);
+                    break;
+                  case "error":
+                    console.error(rest);
                     break;
                   case "if":
                     if (third === "=") {
