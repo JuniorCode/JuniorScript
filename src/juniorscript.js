@@ -9,7 +9,7 @@
                                                    | |        
                                                    |_|        
 
-JuniorScript Alpha 2
+JuniorScript Alpha 2.1
 
 Copyright (©) 2018 JuniorCode
 
@@ -17,7 +17,7 @@ https://github.com/JuniorCode
 
 */
 
-console.log("%c JuniorScript Alpha 2", "background: #0070ff; color: #ffffff");
+console.log("%c JuniorScript Alpha 2.1", "background: #0070ff; color: #ffffff");
 
 String.prototype.replaceAll = function(search, replacement) {
   var target = this;
@@ -29,10 +29,12 @@ var values = [];
 var last = "";
 
 var JuniorScript = {
-  "version": "1.0",
+  "version": "Alpha 2.1",
   "eval": function(code) {
     if (typeof code !== "undefined") {
       var splitCode = code.replace("\t", "").split(/;|\n/);
+      var line = 1;
+      var skip = false;
 
       for (var i = 0; i < splitCode.length; i++) {
         var splitCommand = splitCode[i].replace(/^\s+/g, "");
@@ -44,11 +46,15 @@ var JuniorScript = {
           }
         }
 
+        var all = splitCommand;
+
         splitCommand = splitCommand.split(" ");
 
         var first = splitCommand[0];
         var second = splitCommand[1];
         var third = splitCommand[2];
+        var fourth = splitCommand[3];
+        var fifth = splitCommand[4];
 
         var rest = splitCommand;
         rest.shift();
@@ -58,34 +64,80 @@ var JuniorScript = {
         rest2.shift();
         rest2 = rest2.join(" ");
 
-        if (second === "=") {
-          variables.push(first);
-          values.push(rest2);
+        if (first === "end") {
+          skip = false;
         } else {
-          switch (first) {
-            case "eval":
-              this.eval(rest);
-              break;
-            case "delete":
-              var index = variables.indexOf(rest);
+          if (first === "else") {
+            skip = !skip;
+          } else {
+            if (skip !== true) {
+              if (second === "=") {
+                variables.push(first);
+                values.push(rest2);
+              } else {
+                switch (first) {
+                  case "evaljs":
+                    eval(rest);
+                  case "eval":
+                    this.eval(rest);
+                    break;
+                  case "about":
+                    alert("About JuniorScript:\n\nVersion: " + this.version);
+                    break;
+                  case "alert":
+                    alert(rest);
+                    break;
+                  case "confirm":
+                    last = confirm(rest);
+                    break;
+                  case "in":
+                    last = prompt(rest);
+                    break;
+                  case "out":
+                    document.documentElement.innerHTML += rest;
+                    break;
+                  case "in":
+                    last = prompt(rest);
+                    break;
+                  case "if":
+                    if (third === "=") {
+                      skip = !(second == fourth);
+                    } else if (third === "!=") {
+                      skip = !(second !== fourth);
+                    } else if (third === ">") {
+                      skip = !(Number(second) > Number(fourth));
+                    } else if (third === "<") {
+                      skip = !(Number(second) < Number(fourth));
+                    } else if (third === ">=") {
+                      skip = !(Number(second) >= Number(fourth));
+                    } else if (third === "<=") {
+                      skip = !(Number(second) <= Number(fourth));
+                    }
 
-              if (index > -1) {
-                variables.splice(index, 1);
-                values.splice(index, 1);
+                    break;
+                  case "delete":
+                    var index = variables.indexOf(rest);
+
+                    if (index > -1) {
+                      variables.splice(index, 1);
+                      values.splice(index, 1);
+                    }
+
+                    break;
+                  case "exit":
+                  case "die":
+                    document.open();
+                    document.write(rest);
+                    break;
+                  default:
+                    if (!!all.trim()) {
+                      console.error("JuniorScript Error: Command " + first + " not found on line " + line + ".");
+                    }
+                }
+
+                line++;
               }
-
-              break;
-            case "out":
-              document.documentElement.innerHTML += rest;
-              break;
-            case "in":
-              last = prompt(rest);
-              break;
-            case "exit":
-            case "die":
-              document.open();
-              document.write(rest);
-              break;
+            }
           }
         }
       }
