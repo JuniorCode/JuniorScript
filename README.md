@@ -14,8 +14,6 @@ You can download JuniorScript [here](https://github.com/JuniorCode/JuniorScript/
 
 `<script src="jrs.min.js"></script>`
 
-You can also source it from [`https://juniorscript.com/juniorscript.js`](https://juniorscript.com/juniorscript.js)
-
 Now test it out by pasting this in your HTML.
 
 `<script type="text/juniorscript">out JuniorScript works!</script>`
