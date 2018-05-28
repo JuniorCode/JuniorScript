@@ -4,7 +4,7 @@ Setup
 ---
 
 #### Quick Start
-If you quickly need to add JuniorScript to your site, just paste this into the end of the body tag:
+If you quickly need to add JuniorScript to your site, just paste this at the end of the body tag:
 
 `<script type="text/javascript" src="https://juniorscript.com/juniorscript.js">`
 
