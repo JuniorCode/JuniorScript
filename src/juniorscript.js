@@ -86,7 +86,6 @@ var JuniorScript = {
                     this.eval(rest);
                     break;
                   case "attribute":
-                    console.log(rest3);
                     if (!!rest3.trim()) {
                       document.querySelector(second)[third] = rest3;
                     } else {
