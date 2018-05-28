@@ -4,19 +4,23 @@ Setup
 ---
 
 #### Quick Start
-If you quickly need to add JuniorScript to your site, just paste this into the bottom of the `<body>` tag:
+If you quickly need to add JuniorScript to your site, just paste this into the end of the body tag:
 
 `<script type="text/javascript" src="https://juniorscript.com/juniorscript.js">`
 
-To start using JuniorScript, first download it [here](https://github.com/JuniorCode/JuniorScript/zipball/master), and then source it at the **end of your body tag in your HTML.**
+#### Download
+
+You can download JuniorScript [here](https://github.com/JuniorCode/JuniorScript/zipball/master), and then source it at the end of the body tag.
 
 `<script src="jrs.min.js"></script>`
 
 You can also source it from [`https://juniorscript.com/juniorscript.js`](https://juniorscript.com/juniorscript.js)
 
-Now test it out by placing this in your HTML.
+Now test it out by pasting this in your HTML.
 
 `<script type="text/juniorscript">out JuniorScript works!</script>`
+
+The result should be `JuniorScript works!`. If not, ensure it is placed before the JuniorScript file.
 
 Using JuniorScript
 ---
