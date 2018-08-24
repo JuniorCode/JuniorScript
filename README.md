@@ -1,4 +1,4 @@
-# JuniorScript
+# JuniorScript 3
 
 Setup
 ---
@@ -16,7 +16,7 @@ You can download JuniorScript [here](https://github.com/JuniorCode/JuniorScript/
 
 Now test it out by pasting this in your HTML.
 
-`<script type="text/juniorscript">out JuniorScript works!</script>`
+`<script type="text/juniorscript">print JuniorScript works!</script>`
 
 The result should be `JuniorScript works!`. If not, ensure it is placed before the JuniorScript file.
 
@@ -24,4 +24,4 @@ Using JuniorScript
 ---
 You can also run JuniorScript directly from JavaScript, like this.
 
-`JuniorScript.eval("out Wow, that's cool!");`
+`$("print Wow, that's cool!");`
