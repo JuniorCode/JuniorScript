@@ -1,177 +1,94 @@
 /*
 
-       _             _            _____           _       _   
-      | |           (_)          / ____|         (_)     | |  
-      | |_   _ _ __  _  ___  _ _| (___   ___ _ __ _ _ __ | |_ 
-  _   | | | | | '_ \| |/ _ \| '__\___ \ / __| '__| | '_ \| __|
- | |__| | |_| | | | | | (_) | |  ____) | (__| |  | | |_) | |_ 
-  \____/ \__,_|_| |_|_|\___/|_| |_____/ \___|_|  |_| .__/ \__|
-                                                   | |        
-                                                   |_|        
+     _              _            ___           _        _     ____
+  _ | | _  _  _ _  (_) ___  _ _ / __| __  _ _ (_) _ __ | |_  |__ /
+ | || || || || ' \ | |/ _ \| '_|\__ \/ _|| '_|| || '_ \|  _|  |_ \
+  \__/  \_,_||_||_||_|\___/|_|  |___/\__||_|  |_|| .__/ \__| |___/
+                                                 |_|              
 
-JuniorScript Alpha 2.2
+JuniorScript 3
 
-Copyright (©) 2018 JuniorCode
-
+Copyright (c) 2018 JuniorCode
 https://github.com/JuniorCode
 
 */
 
-console.log("%c JuniorScript Alpha 2.2", "background: #0070ff; color: #ffffff");
+function $(code) {
+  var temp_variables = {};
+  var temp_splitCode = code.split(/[\n;]+/);
 
-String.prototype.replaceAll = function(search, replacement) {
-  var target = this;
-  return target.split(search).join(replacement);
-};
-
-var variables = [];
-var values = [];
-var last = "";
-
-var JuniorScript = {
-  "version": "Alpha 2.2",
-  "eval": function(code) {
-    if (typeof code !== "undefined") {
-      var splitCode = code.replace("\t", "").split(/;|\n/);
-      var line = 1;
-      var skip = false;
-
-      for (var i = 0; i < splitCode.length; i++) {
-        var splitCommand = splitCode[i].replace(/^\s+/g, "");
-        splitCommand = splitCommand.replaceAll("$last", last);
-
-        if (variables.length > 0 && splitCommand.split(" ")[0] !== "delete") {
-          for (var j = 0; j < variables.length; j++) {
-            splitCommand = splitCommand.replaceAll("$" + variables[j], values[j]);
-          }
-        }
-
-        var all = splitCommand;
-
-        splitCommand = splitCommand.split(" ");
-
-        var first = splitCommand[0];
-        var second = splitCommand[1];
-        var third = splitCommand[2];
-        var fourth = splitCommand[3];
-        var fifth = splitCommand[4];
-
-        var rest = splitCommand;
-        rest.shift();
-        rest = rest.join(" ");
-
-        var rest2 = splitCommand;
-        rest2.shift();
-        rest2 = rest2.join(" ");
-
-        var rest3 = splitCommand;
-        rest3.shift();
-        rest3 = rest3.join(" ");
-
-        if (first === "end") {
-          skip = false;
+  for (var i in temp_splitCode) {
+    var temp_splitLine = temp_splitCode[i].trim().split(" ").map(function(value) {
+      if (value.charAt(0) === "$" && temp_variables.hasOwnProperty(value.substr(1))) {
+        return temp_variables[value.substr(1)];
+      } else {
+        if (value === "true" || value === true) {
+          return true;
         } else {
-          if (first === "else") {
-            skip = !skip;
+          if (value === "false" || value === false) {
+            return false;
           } else {
-            if (skip !== true) {
-              if (second === "=") {
-                variables.push(first);
-                values.push(rest2);
-              } else {
-                switch (first) {
-                  case "evaljs":
-                    eval(rest);
-                  case "eval":
-                    this.eval(rest);
-                    break;
-                  case "attribute":
-                    if (!!rest3.trim()) {
-                      document.querySelector(second)[third] = rest3;
-                    } else {
-                      last = document.querySelector(second)[third];
-                    }
-                    break;
-                  case "about":
-                    alert("About JuniorScript:\n\nVersion: " + this.version);
-                    break;
-                  case "alert":
-                    alert(rest);
-                    break;
-                  case "confirm":
-                    last = confirm(rest);
-                    break;
-                  case "in":
-                    last = prompt(rest);
-                    break;
-                  case "out":
-                    document.documentElement.innerHTML += rest;
-                    break;
-                  case "in":
-                    last = prompt(rest);
-                    break;
-                  case "log":
-                    console.log(rest);
-                    break;
-                  case "info":
-                    console.info(rest);
-                    break;
-                  case "warn":
-                    console.warn(rest);
-                    break;
-                  case "error":
-                    console.error(rest);
-                    break;
-                  case "if":
-                    if (third === "=") {
-                      skip = !(second == fourth);
-                    } else if (third === "!=") {
-                      skip = !(second !== fourth);
-                    } else if (third === ">") {
-                      skip = !(Number(second) > Number(fourth));
-                    } else if (third === "<") {
-                      skip = !(Number(second) < Number(fourth));
-                    } else if (third === ">=") {
-                      skip = !(Number(second) >= Number(fourth));
-                    } else if (third === "<=") {
-                      skip = !(Number(second) <= Number(fourth));
-                    }
-
-                    break;
-                  case "delete":
-                    var index = variables.indexOf(rest);
-
-                    if (index > -1) {
-                      variables.splice(index, 1);
-                      values.splice(index, 1);
-                    }
-
-                    break;
-                  case "exit":
-                  case "die":
-                    document.open();
-                    document.write(rest);
-                    break;
-                  default:
-                    if (!!all.trim()) {
-                      console.error("JuniorScript Error: Command " + first + " not found on line " + line + ".");
-                    }
-                }
-
-                line++;
-              }
+            if (!isNaN(Number(value))) {
+              return Number(value);
+            } else {
+              return value;
             }
           }
         }
       }
+    });
+
+    var temp_first = temp_splitLine[0];
+    var temp_second = temp_splitLine[1];
+    var temp_third = temp_splitLine[2];
+    var temp_fourth = temp_splitLine[3];
+    var temp_fifth = temp_splitLine[4];
+
+    var temp_rest = temp_splitLine;
+    temp_rest.shift();
+    temp_rest = temp_rest.join(" ");
+
+    var temp_rest2 = temp_splitLine;
+    temp_rest2.shift();
+    temp_rest2 = temp_rest2.join(" ");
+
+    if (temp_second === "=") {
+      if (typeof temp_first !== "undefined" && temp_rest2 !== "undefined") {
+        temp_variables[temp_first] = temp_rest2;
+      } else {
+        throw new Error("Not enough arguments.");
+      }
+    } else {
+      switch (temp_first) {
+        case "print":
+          document.body.innerHTML += temp_rest;
+          break;
+        case "exit":
+          document.open();
+
+          if (typeof temp_rest !== "undefined") {
+            document.write(temp_second);
+          }
+          break;
+        case "delete":
+          temp_variables.splice(temp_variables.indexOf(second), 1);
+          break;
+      }
     }
-  }
-}
 
-var tags = document.getElementsByTagName("script");
+    // Delete variables to free up memory and
+    // prevent memory leaks.
 
-for (var i = 0; i < tags.length; i++) {
-  if (tags[i].type.toLowerCase().includes("juniorscript")) {
-    JuniorScript.eval(tags[i].innerHTML);
+    delete temp_splitLine;
+    delete temp_first;
+    delete temp_second;
+    delete temp_third;
+    delete temp_fourth;
+    delete temp_fifth;
+    delete temp_rest;
   }
+
+  // Delete variables to prevent memory leaks.
+
+  //delete temp_variables;
 }
