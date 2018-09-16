@@ -1,3 +1,0 @@
-test:
-  post:
-  - time nano src/juniorscript.js
