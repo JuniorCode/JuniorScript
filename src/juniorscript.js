@@ -6,7 +6,7 @@
   \__/  \_,_||_||_||_|\___/|_|  |___/\__||_|  |_|| .__/ \__| |___/
                                                  |_|              
 
-JuniorScript 3
+JuniorScript 3.0.1 Alpha 1
 
 Copyright (c) 2018 JuniorCode
 https://github.com/JuniorCode
@@ -61,13 +61,15 @@ function $(code) {
     } else {
       switch (temp_first) {
         case "print":
-          document.body.innerHTML += temp_rest;
+          document.documentElement.innerHTML += temp_rest;
+          break;
+        case "write":
+          document.open();
+          document.write(temp_rest);
           break;
         case "exit":
-          document.open();
-
           if (typeof temp_rest !== "undefined") {
-            document.write(temp_second);
+            document.documentElement.innerHTML += temp_second;
           }
           break;
         case "delete":
@@ -90,5 +92,5 @@ function $(code) {
 
   // Delete variables to prevent memory leaks.
 
-  //delete temp_variables;
+  delete temp_variables;
 }
